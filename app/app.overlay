@@ -1,0 +1,13 @@
+/{
+	aliases {
+		led0 = &external_led;
+	};
+	
+	leds {
+		compatible = "gpio-leds";
+		external_led: led_0 {
+			gpios = <&gpio0 48 GPIO_ACTIVE_HIGH>; //GPIO 48
+			label = "External LED";
+		};
+	};
+};
