@@ -1,9 +1,10 @@
 /dts-v1/;
 
 #include <espressif/esp32s3/esp32s3_wroom_n8.dtsi>
+#include <espressif/partitions_0x0_amp.dtsi>
 
 / {
-    model = "Our Board Scratch;
+    model = "Our Board Scratch";
     compatible = "iomico,our-board-scratch";
     aliases {
         app-led = &led0;
