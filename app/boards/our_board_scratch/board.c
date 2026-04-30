@@ -1,8 +1,8 @@
 #include <zephyr/init.h>
 #include <zephyr/kernel.h>
 
-static int board_our_board_scratch_init (void)
+void board_early_init_hook (void)
 {
     /*Some function to run before boot*/
-    
+    printf("Board Initialized");
 }
