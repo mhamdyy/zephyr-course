@@ -6,7 +6,7 @@
     model = "Our Board Scratch;
     compatible = "iomico,our-board-scratch";
     aliases {
-        led0 = &green_led
+        app-led = &led0;
     };
 
     chosen {
@@ -17,9 +17,9 @@
 
     leds {
         compatible = "gpio-leds";
-        green_led : led_0 {
-            gpios = <&gpio0 48 GPIO_ACTIVE_LOW>;
-            label = "Green Led"
+        led0: led_0 {
+            gpios = <&gpio0 48 GPIO_ACTIVE_HIGH>; //GPIO 48
+            label = "LED 0";
         };
     };
 };
