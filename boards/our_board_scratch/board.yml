@@ -1,6 +1,0 @@
-board:
-    name: our_board_scratch
-    full_name: Our Board Scratch
-    vendor: iomico
-    socs:
-    - name: esp32s3
