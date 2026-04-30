@@ -1,0 +1,29 @@
+/dts-v1/;
+
+#include <espressif/esp32s3/esp32s3_wroom_n8.dtsi>
+/ {
+	model = "Our Board Scratch;
+	compatible = "iomico,our-board-scratch";
+	aliases {
+		led0 = &green_led
+	};
+	
+	chosen {
+		zephyr,sram = &sram1;
+		zephyr,flash = &flash0;
+		zephyr,code-partition = &slot0_partition;
+	};
+	
+	leds {
+		compatible = "gpio-leds";
+		green_led : led_0 {
+			gpios = <&gpio0 48 GPIO_ACTIVE_LOW>;
+			label = "Green Led"
+		};
+	};
+};
+
+&gpio0 {
+	status = "okay";
+};
+
