@@ -1,6 +1,0 @@
-config HEAP_MEM_POOL_ADD_SIZE_BOARD
-    int
-    default 4096
-
-config BOARD_OUR_BOARD_SCRATCH
-    select BOARD_EARLY_INIT_HOOK
