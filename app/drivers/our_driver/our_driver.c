@@ -14,7 +14,8 @@ static DEVICE_API(sensor, api_our_driver) = {
     .channel_get = our_driver_channel_get,
 };
 
-DEVICE_DT_INST_DEFINE(0, init_our_driver, NULL, NULL, NULL, POST_KERNEL, 80, &api_our_driver);
+#define DEV_INST(inst) DEVICE_DT_INST_DEFINE(inst, init_our_driver, NULL, NULL, NULL, POST_KERNEL, 80, &api_our_driver);
+DT_INST_FOREACH_STATUS_OKAY(DEV_INST);
 
 static const struct our_driver_config cfg_##inst = {
     .i2c = I2C_DT_SPEC_GET(inst),
