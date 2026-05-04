@@ -1,13 +1,20 @@
 /{
-	aliases {
-		app-led = &led0;
-	};
-	
-	leds {
-		compatible = "gpio-leds";
-		led0: led_0 {
-			gpios = <&gpio0 48 GPIO_ACTIVE_HIGH>; //GPIO 48
-			label = "LED 0";
-		};
-	};
+    aliases {
+        app-led = &led0;
+    };
+
+    leds {
+        compatible = "gpio-leds";
+        led0: led_0 {
+            gpios = <&gpio0 48 GPIO_ACTIVE_HIGH>; //GPIO 48
+            label = "LED 0";
+        };
+    };
+
+    our_driver0: our_driver {
+        compatible = "our,driver";
+        calibration = 10;
+        status = "okay";
+    };
+
 };

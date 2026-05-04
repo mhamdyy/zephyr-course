@@ -46,7 +46,7 @@ if LED_SUBSYSTEM
             range 0 100
             help
                 Set the LED brightness level (0-100%)
-    
+
         config LED_FADE_DURATION_MS
             int "LED fade duration (ms)"
             default 500
@@ -68,8 +68,9 @@ if LED_SUBSYSTEM
                 help
                     Define a custom LED blinking pattern.
         endmenu #Expert settings
-        
+
     endif #ADVANCED_LED_SETTINGS
 endif #LED_SUBSYSTEM
 
 source "Kconfig.zephyr"
+rsource "drivers/our_driver/Kconfig"
