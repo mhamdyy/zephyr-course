@@ -1,0 +1,3 @@
+description: Our custom sensor driving binding
+compatible: "our,driver"
+include: base.yaml
