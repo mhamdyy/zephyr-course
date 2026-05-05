@@ -1,6 +1,7 @@
 #include <zephyr/drivers/gpio.h>
 #include <zephyr/kernel.h>
 #include <zephyr/logging/log.h>
+#include <zephyr/driver/sensor.h>
 
 /* The devicetree node identifier for the "led0" alias. */
 #define LED_NODE DT_ALIAS(app_led)
@@ -12,7 +13,7 @@ LOG_MODULE_REGISTER(main, LOG_LEVEL_INF);
 namespace {
     void test()
     {
-        const struct device* driver = DEVICE_DT_GET(DT_NODELABEL(ourdriver0));
+        const struct device* driver = DEVICE_DT_GET(DT_NODELABEL(our_driver0));
         struct sensor_value val;
         auto ret = sensor_channel_get(driver, SENSOR_CHAN_AMBIENT_TEMP, &val);
         LOG_INF("Channel ret %d",ret);

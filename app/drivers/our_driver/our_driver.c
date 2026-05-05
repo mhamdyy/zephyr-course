@@ -14,13 +14,8 @@ static DEVICE_API(sensor, api_our_driver) = {
     .channel_get = our_driver_channel_get,
 };
 
-#define DEV_INST(inst) DEVICE_DT_INST_DEFINE(inst, init_our_driver, NULL, NULL, NULL, POST_KERNEL, 80, &api_our_driver);
+#define DEV_INST(inst) DEVICE_DT_INST_DEFINE(inst, our_driver_init, NULL, NULL, NULL, POST_KERNEL, 80, &api_our_driver);
 DT_INST_FOREACH_STATUS_OKAY(DEV_INST);
-
-static const struct our_driver_config cfg_##inst = {
-    .i2c = I2C_DT_SPEC_GET(inst),
-    .calibration = DT_INST_PROP(inst, calibration),
-};
 
 static int our_driver_sample_fetch(const struct device *dev, enum sensor_channel channel)
 {
