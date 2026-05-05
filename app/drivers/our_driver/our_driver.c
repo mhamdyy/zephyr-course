@@ -1,6 +1,11 @@
 #include <zephyr/drivers/sensor.h>
 #include <zephyr/logging/log.h>
 #include <zephyr/drivers/gpio.h>
+#include "our_driver.h"
+
+typedef struct our_driver_data {
+    uint32_t my_param = 0;
+} our_driver_data_t;
 
 #define DT_DRV_COMPAT our_driver
 
@@ -20,7 +25,9 @@ static DEVICE_API(sensor, api_our_driver) = {
     .channel_get = our_driver_channel_get,
 };
 
-#define DEV_INST(inst) DEVICE_DT_INST_DEFINE(inst, our_driver_init, NULL, NULL, NULL, POST_KERNEL, 80, &api_our_driver);
+#define DEV_INST(inst) \
+    static our_driver_data_t our_driver_data_##inst; \
+    DEVICE_DT_INST_DEFINE(inst, our_driver_init, NULL, &our_driver_data_##inst, NULL, POST_KERNEL, 80, &api_our_driver);
 DT_INST_FOREACH_STATUS_OKAY(DEV_INST);
 
 static int our_driver_sample_fetch(const struct device *dev, enum sensor_channel channel)
@@ -54,4 +61,19 @@ static int our_driver_init(const struct device *dev)
         return -ENODEV;
     }
     return 0;
+}
+
+void our_driver_set_param(const struct device *dev, uint32_t param)
+{
+    our_driver_data_t *drv_data = (our_driver_data_t *)dev->data;
+
+    if (NULL != drv_data)
+    {
+        drv_data->my_param = param;
+        LOG_INF("Setting my_param to %u", param);
+    }
+    else
+    {
+        LOG_ERR("Device data is NULL");
+    }
 }
