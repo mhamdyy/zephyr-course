@@ -8,6 +8,7 @@
 #define LED_NODE DT_ALIAS(app_led)
 
 static const struct gpio_dt_spec led = GPIO_DT_SPEC_GET(LED_NODE, gpios);
+static bool led_state = false;
 
 LOG_MODULE_REGISTER(our_driver, LOG_LEVEL_INF);
 
@@ -27,6 +28,7 @@ static int our_driver_sample_fetch(const struct device *dev, enum sensor_channel
 {
     LOG_INF("Hello from our driver sample fetch %d", channel);
     gpio_pin_configure_dt(&led, GPIO_OUTPUT_ACTIVE);
+    LOG_INF("LED state: ON");
     return 0;
 }
 
@@ -34,6 +36,7 @@ static int our_driver_channel_get(const struct device *dev, enum sensor_channel 
 {
     LOG_INF("Hello from our driver channel get %d", channel);
     gpio_pin_configure_dt(&led, GPIO_OUTPUT_INACTIVE);
+    LOG_INF("LED state: OFF");
     return 0;
 }
 
