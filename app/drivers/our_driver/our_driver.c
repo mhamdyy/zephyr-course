@@ -4,7 +4,7 @@
 #include "our_driver.h"
 
 typedef struct our_driver_data {
-    uint32_t my_param = 0;
+    uint32_t my_param;
 } our_driver_data_t;
 
 #define DT_DRV_COMPAT our_driver
@@ -48,7 +48,20 @@ static int our_driver_channel_get(const struct device *dev, enum sensor_channel 
 
 static int our_driver_init(const struct device *dev)
 {
+    our_driver_data_t *drv_data = (our_driver_data_t *)dev->data;
+
     LOG_INF("Hello from our driver init");
+
+    if (NULL != drv_data)
+    {
+        drv_data->my_param = 0;
+        LOG_INF("my_param initialized to 0");
+    }
+    else
+    {
+        LOG_ERR("Device data is NULL");
+    }
+
     if (!gpio_is_ready_dt(&led))
     {
         LOG_ERR("LED not ready");
@@ -67,6 +80,7 @@ void our_driver_set_param(const struct device *dev, uint32_t param)
 {
     our_driver_data_t *drv_data = (our_driver_data_t *)dev->data;
 
+    LOG_INF("Calling the custom extensin API for our Driver");
     if (NULL != drv_data)
     {
         drv_data->my_param = param;
