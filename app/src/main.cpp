@@ -18,7 +18,7 @@ int main(void)
         LOG_INF("LED state: %s", led_state ? "ON" : "OFF");
         ret = sensor_channel_get(driver, SENSOR_CHAN_AMBIENT_TEMP, &val);
         k_msleep(CONFIG_APP_HEARTBEAT_PERIOD_MS);
-        ret2 = sensor_sample_fetch(driver, SENSOR_CHAN_AMBIENT_TEMP);
+        ret2 = sensor_sample_fetch(driver);
         k_msleep(CONFIG_APP_HEARTBEAT_PERIOD_MS);
     }
     return 0;
