@@ -8,7 +8,6 @@
 #define LED_NODE DT_ALIAS(app_led)
 
 static const struct gpio_dt_spec led = GPIO_DT_SPEC_GET(LED_NODE, gpios);
-static bool led_state = false;
 
 LOG_MODULE_REGISTER(our_driver, LOG_LEVEL_INF);
 
