@@ -13,7 +13,6 @@
 
     our_driver0: our_driver {
         compatible = "our,driver";
-        calibration = 10;
         status = "okay";
     };
 
