@@ -19,18 +19,18 @@ DT_INST_FOREACH_STATUS_OKAY(DEV_INST);
 
 static int our_driver_sample_fetch(const struct device *dev, enum sensor_channel channel)
 {
-    LOG_INF("Hello from our driver sample fetch %d\n", channel);
+    LOG_INF("Hello from our driver sample fetch %d", channel);
     return 0;
 }
 
 static int our_driver_channel_get(const struct device *dev, enum sensor_channel channel, struct sensor_value* val)
 {
-    LOG_INF("Hello from our driver channel get %d\n", channel);
+    LOG_INF("Hello from our driver channel get %d", channel);
     return 0;
 }
 
 static int our_driver_init(const struct device *dev)
 {
-    LOG_INF("Hello from our driver init\n");
+    LOG_INF("Hello from our driver init");
     return 0;
 }
