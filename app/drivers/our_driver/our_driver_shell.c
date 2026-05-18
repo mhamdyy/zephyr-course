@@ -84,6 +84,8 @@ static int shell_our_driver_info(const struct shell* sh, size_t argc, char** arg
 static int shell_our_driver_set(const struct shell* sh, size_t argc, char** argv)
 {
     const struct device* dev = shell_device_get_binding(argv[1]);
+    char *endptr;
+    long int num;
 
     if(NULL == dev)
     {
@@ -91,13 +93,15 @@ static int shell_our_driver_set(const struct shell* sh, size_t argc, char** argv
         return -EFAULT;
     }
 
-    if (0 > atoi(argv[2]) || 255 < atoi(argv[2]))
+    num = strtol(argv[2], &endptr, 10);
+
+    if ((0 > num) || (255 < num) || (endptr != argv[2]))
     {
         shell_error(sh, "Parameter must be between 0 and 255");
         return -EFAULT;
     }
 
-    our_driver_set_param(dev, (uint32_t)atoi(argv[2]));
+    our_driver_set_param(dev, (uint32_t)num);
 
     return 0;
 }
