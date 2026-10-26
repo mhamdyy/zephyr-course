@@ -95,7 +95,7 @@ static int shell_our_driver_set(const struct shell* sh, size_t argc, char** argv
 
     num = strtol(argv[2], &endptr, 10);
 
-    if ((0 > num) || (255 < num) || (endptr != argv[2]))
+    if ((0 > num) || (255 < num) || (endptr == argv[2]) || (*endptr != '\0'))
     {
         shell_error(sh, "Parameter must be between 0 and 255");
         return -EFAULT;
