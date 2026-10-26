@@ -56,8 +56,16 @@ static int shell_our_driver_channel_get(const struct shell* sh, size_t argc, cha
 
 static int shell_our_driver_info(const struct shell* sh, size_t argc, char** argv)
 {
-    shell_info(sh, "The device name is %s", argv[1]);
-    shell_info(sh, "Ready state");
+    const struct device* dev = shell_device_get_binding(argv[1]);
+
+    if(NULL == dev)
+    {
+        shell_error(sh, "Couldn't find device %s", argv[1]);
+        return -EFAULT;
+    }
+    
+    shell_info(sh, "The device name is %s", dev->name);
+    shell_info(sh, "The device state is %d",device_is_ready(dev));
 
     return 0;
 }
