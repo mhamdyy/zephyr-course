@@ -63,7 +63,7 @@ static int shell_our_driver_info(const struct shell* sh, size_t argc, char** arg
         shell_error(sh, "Couldn't find device %s", argv[1]);
         return -EFAULT;
     }
-    
+
     shell_info(sh, "The device name is %s", dev->name);
     shell_info(sh, "The device state is %d",device_is_ready(dev));
 
